@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
+import PlaylistForm from '../components/PlaylistForm'
+import Playlists from './Playlists'
 
-class PlaylistContainer extends React.Component {
-    render(){
+function PlaylistContainer() {
+        const [value, setValue] = useState(false);
         return(
-            <div>PlaylistContainer</div>
+            <div>
+                Playlists
+                <PlaylistForm isOn={value} handleToggle={() => setValue(!value)}  onColor="#EF476F"/>
+                <Playlists />
+            </div>
         )
-    }
 }
 
 export default PlaylistContainer

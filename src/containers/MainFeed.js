@@ -5,17 +5,16 @@ import MainFeedContainer from './MainFeedContainer.js'
 
 class MainFeed extends React.Component {
     render(){
-        const {songs, description, image_url} = this.props
+        const {songs, currentUser} = this.props
         return(
             <div>
                 <Search searchPosts={this.props.searchPosts}/>
                 <MainFeedForm 
                     inputHandler={this.props.inputHandler}
                     submitFormHandler={this.props.submitFormHandler}
-                    description={description}
-                    image_url={image_url}
+                    currentUser={currentUser}
                 />
-                <MainFeedContainer posts={this.props.posts} songs={songs}/>
+                <MainFeedContainer songs={songs}/>
             </div>
         )
     }
