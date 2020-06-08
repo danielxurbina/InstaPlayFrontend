@@ -3,9 +3,11 @@ import Posts from '../components/Posts.js'
 
 class MainFeedContainer extends React.Component {
     render(){
+        // console.log(this.props.songs)
+        const {songs} = this.props
         return(
             <div>
-                {this.props.posts.map(post => <Posts key={post.id} posts={post}/>)}
+                {songs.map(song => <Posts key={song.id} song={song}/>)}
             </div>
         )
     }

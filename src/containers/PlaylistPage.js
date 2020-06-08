@@ -1,9 +1,10 @@
 import React from 'react'
+import PlaylistContainer from './PlaylistContainer'
 
 class PlaylistPage extends React.Component {
     render(){
         return(
-            <div>PlaylistPage</div>
+           <PlaylistContainer />
         )
     }
 }

@@ -3,10 +3,9 @@ import ProfilePageContainer from './ProfilePageContainer'
 
 class ProfilePage extends React.Component {
     render(){
-        // console.log(this.props.currentUser)
-        // console.log(this.props.currentUserImage)
+        const {currentUser, currentUserImage, userSongs} = this.props
         return(
-            <ProfilePageContainer currentUser={this.props.currentUser} currentUserImage={this.props.currentUserImage}/>
+            <ProfilePageContainer currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs}/>
         )
     }
 }
