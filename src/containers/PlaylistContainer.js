@@ -1,16 +1,62 @@
-import React, {useState} from 'react'
-import PlaylistForm from '../components/PlaylistForm'
-import Playlists from './Playlists'
+import React from 'react'
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
 
-function PlaylistContainer() {
-        const [value, setValue] = useState(false);
+class PlaylistContainer extends React.Component{
+
+    componentDidMount(){
+        if(this.props.userPlaylist.user.id === this.props.currentUser.id){
+            let playlist = {title: this.props.userPlaylist.title}
+            fetch('http://localhost:3000/playlist_list', {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(playlist)
+            })
+            .then(response => response.json())
+            .then(data => this.props.setPlaylistImages(data))
+        }
+    }
+
+    render(){
+        const {title, id} = this.props.userPlaylist
         return(
-            <div>
-                Playlists
-                <PlaylistForm isOn={value} handleToggle={() => setValue(!value)}  onColor="#EF476F"/>
-                <Playlists />
-            </div>
+            <React.Fragment>
+            <Grid style={{position: "relative", minHeight: "100vh" }} container alignItems="center" justify="center">
+              <Card style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-100%, -100%)", width: 300, height: 300, borderRadius: 50, cursor: 'pointer' }} elevation={16}>
+                <CardContent style={{padding: 0, position: "absolute", top: 0, left: 0,}}>
+                  <h1 style={{position: 'absolute', color: 'white', top: 8, left: '38%'}}>{title}</h1>
+                  <img src={`http://localhost:3000/${this.props.playlistImages}`}  alt="cover" onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}/>
+                </CardContent>
+              </Card>
+            </Grid>
+          </React.Fragment>
         )
+    }
 }
 
 export default PlaylistContainer
+
+// const cardStyle = {      
+//     position: "relative", // controls the position... duh
+//     top: "50%", // controls the top position
+//     left: "50%", // controls the left position
+//     transform: "translate(-50%, -50%)", // controls the position to from the corners
+//     width: 400, // controls the width of the card
+//     height: 400, // controls the height of the card
+//     borderRadius: 100 // controls the borders of the card to make it round or square 
+//     }
+//     const gridStyle = {
+//         position: "relative", // controls the position of the container.. duh
+//         minHeight: "100vh" // controls the height of the container from the top
+//     }
+//     const mediaStyle = {
+//         padding: 0, // controls the padding of the image
+//         position: "absolute", // controls the position of the image
+//         top: 0, // controls the top position of the image
+//         left: 0, // controls the left position of the image
+//     }
