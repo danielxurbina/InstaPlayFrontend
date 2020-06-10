@@ -6,16 +6,19 @@ import { Login, Signup, NavBar} from './components'
 import './App.css';
 const songsURL = "http://localhost:3000/songs"
 const playlistURL = "http://localhost:3000/playlists"
+const headers = {
+  "Content-Type": "application/json",
+  "Accept": "application/json"
+}
 
 class App extends React.Component {
-  
+
   state = {
     currentUser: null, 
     currentUserImage: null, 
     songs: [], 
-    sort: "", 
     playlists: [], 
-    playlistImages: []
+    sort: ""
   }
 
   componentDidMount(){
@@ -29,8 +32,6 @@ class App extends React.Component {
   logout = () => {this.setState({currentUser: null})}
 
   searchPosts = (event) => {this.setState({sort: event.target.value})}
-  
-  setPlaylistImages = (data) => {this.setState({playlistImages: data.image})}
 
   submitFormHandler = (event) => {
     event.preventDefault()
@@ -43,54 +44,58 @@ class App extends React.Component {
     )
   }
 
-  render(){
-    const {currentUser, currentUserImage, playlistImages, playlists, songs, sort} = this.state
+  createPlaylist = (event) => {
+    event.preventDefault()
+    const formPlaylistData = new FormData(event.target)
 
-    let filteredSongs = songs.filter(song => song.user.username.toLowerCase().includes(sort.toLowerCase()))
+    axios.post(playlistURL, formPlaylistData)
+    .then(response => this.setState({
+        playlists: [response.data, ...this.state.playlists]
+      })
+    )
+  }
+
+  render(){
+    const {currentUser, currentUserImage, playlists, songs, sort} = this.state
+
+    let Songs = songs.filter(song => song.user.username.toLowerCase().includes(sort.toLowerCase()))
     let userSongs = songs.filter(song => currentUser ? song.user.id === currentUser.id ? song : null : null)
     let userPlaylists = playlists.filter(playlist => currentUser ? playlist.user.id === currentUser.id ? playlist : null : null)
-
-    // console.log("playlist state", this.state.playlists)
     return (
       <div className="App">
         <NavBar currentUser={currentUser} logout={this.logout}/>
         <Switch>
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/playlists/:id" render={(props) => <Playlists {...props} routerProps={props} currentUser={currentUser}/>}/>
+          <Route exact path="/login" render={(props) => <Login setCurrentUser={this.setCurrentUser} routerProps={props}/>}/>
+          <Route exact path="/signup" render={(props) => <Signup updateCurrentUser={this.updateCurrentUser} routerProps={props}/>}/>
           <Route exact path="/homepage" 
             render={(props) => 
               <MainFeed 
                 routerProps={props} 
                 inputHandler={this.inputHandler} 
                 submitFormHandler={this.submitFormHandler}
-                songs={filteredSongs}
+                songs={Songs}
                 searchPosts={this.searchPosts}
                 currentUser={currentUser}
+                userPlaylists={userPlaylists}
               />
             }
           />
-          <Route exact path="/login" render={(props) => <Login setCurrentUser={this.setCurrentUser} routerProps={props}/>}/>
-          <Route exact path="/signup" render={(props) => <Signup updateCurrentUser={this.updateCurrentUser} routerProps={props}/>}/>
           <Route exact path="/playlists" 
             render={(props) => 
               <PlaylistPage 
                 routerProps={props} 
                 userPlaylists={userPlaylists} 
                 currentUser={currentUser} 
-                setPlaylistImages={this.setPlaylistImages} 
-                playlistImages={playlistImages}
+                createPlaylist={this.createPlaylist}
               />
             }
           />
           <Route exact path="/profile" 
             render={() => { 
               return currentUser ? 
-              (
-                <ProfilePage currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs}/>
-              ) : 
-              (
-                <Login setCurrentUser={this.setCurrentUser}/>
-              )
+              (<ProfilePage currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs}/>) : (<Login setCurrentUser={this.setCurrentUser}/>)
             }}
           />
         </Switch>

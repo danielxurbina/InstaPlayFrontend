@@ -1,20 +1,23 @@
 import React from 'react'
 import './Switch.css'
 
-const PlaylistForm = ({ isOn, handleToggle, onColor }) => {
-    console.log(isOn)
+function PlaylistForm(props) {
+    console.log(props.isOn)
     return (
       <>
-        <input checked={isOn} onChange={handleToggle} className="react-switch-checkbox" id={`react-switch-new`} type="checkbox"/>
-        <label style={{ background: isOn && onColor }} className="react-switch-label" htmlFor={`react-switch-new`}>
+        <input checked={props.isOn} onChange={props.handleToggle} className="react-switch-checkbox" id={`react-switch-new`} type="checkbox"/>
+        <label style={{ background: props.isOn && props.onColor }} className="react-switch-label" htmlFor={`react-switch-new`}>
             <span className={`react-switch-button`} />
         </label>
-        {isOn ? 
+        {props.isOn ? 
         <div>
-            <input type="text" placeholder="Title"/>
-            <input type="text" placeholder="Description"/>
-            <input type="hidden" value="this is supposed to be currentUser id" />
-            <button className="playlistFormButton" type="submit">Submit</button>
+            <form onSubmit={props.createPlaylist}>
+              <input type="text" name="title" placeholder="Title"/>
+              <input type="text" name="description" placeholder="Description"/>
+              <input type="file" name="image"/>
+              {props.currentUser ? <input type="hidden" name="user_id" value={props.currentUser.id}/> : null}
+              <button className="playlistFormButton" type="submit">Submit</button>
+            </form>
         </div>
         :  null}
       </>
