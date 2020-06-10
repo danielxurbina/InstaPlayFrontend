@@ -8,8 +8,14 @@ function PlaylistPage(props) {
     return(
         <div>
             <h1>Playlists</h1>
-            <PlaylistForm isOn={value} handleToggle={() => setValue(!value)}  onColor="#EF476F"/>
-            {userPlaylists.map(userPlaylist => <PlaylistContainer userPlaylist={userPlaylist} key={userPlaylist.id} currentUser={currentUser} routerProps={props.routerProps} setPlaylistImages={props.setPlaylistImages} playlistImages={playlistImages}/>)}
+            <PlaylistForm 
+                isOn={value} 
+                handleToggle={() => setValue(!value)}  
+                onColor="#EF476F"
+                createPlaylist={props.createPlaylist} 
+                currentUser={currentUser} 
+            />
+            {userPlaylists.map(userPlaylist => <PlaylistContainer userPlaylist={userPlaylist} key={userPlaylist.id} currentUser={currentUser} routerProps={props.routerProps}/>)}
         </div>
     )
 }

@@ -9,6 +9,8 @@ const headers = {
 
 class PlaylistContainer extends React.Component{
 
+    state = {playlistImages: []}
+
     componentDidMount(){
         if(this.props.userPlaylist.user.id === this.props.currentUser.id){
             let playlist = {title: this.props.userPlaylist.title}
@@ -18,19 +20,20 @@ class PlaylistContainer extends React.Component{
                 body: JSON.stringify(playlist)
             })
             .then(response => response.json())
-            .then(data => this.props.setPlaylistImages(data))
+            .then(data => this.setState({playlistImages: data.image}))
         }
     }
 
     render(){
         const {title, id} = this.props.userPlaylist
+        console.log(this.state.playlistImages.length)
         return(
             <React.Fragment>
             <Grid style={{position: "relative", minHeight: "100vh" }} container alignItems="center" justify="center">
               <Card style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-100%, -100%)", width: 300, height: 300, borderRadius: 50, cursor: 'pointer' }} elevation={16}>
                 <CardContent style={{padding: 0, position: "absolute", top: 0, left: 0,}}>
                   <h1 style={{position: 'absolute', color: 'white', top: 8, left: '38%'}}>{title}</h1>
-                  <img src={`http://localhost:3000/${this.props.playlistImages}`}  alt="cover" onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}/>
+                  <img src={`http://localhost:3000/${this.state.playlistImages}`}  alt="cover" onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}/>
                 </CardContent>
               </Card>
             </Grid>

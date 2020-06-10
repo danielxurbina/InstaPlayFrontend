@@ -3,11 +3,10 @@ import Posts from '../components/Posts.js'
 
 class MainFeedContainer extends React.Component {
     render(){
-        // console.log(this.props.songs)
-        const {songs} = this.props
+        const {songs, userPlaylists} = this.props
         return(
             <div>
-                {songs.map(song => <Posts key={song.id} song={song}/>)}
+                {songs.map(song => <Posts key={song.id} song={song} userPlaylists={userPlaylists}/>)}
             </div>
         )
     }
