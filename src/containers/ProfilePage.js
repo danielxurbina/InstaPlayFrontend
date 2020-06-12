@@ -5,7 +5,7 @@ class ProfilePage extends React.Component {
     render(){
         const {currentUser, currentUserImage, userSongs} = this.props
         return(
-            <ProfilePageContainer currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs}/>
+            <ProfilePageContainer currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs} updateUser={this.props.updateUser}/>
         )
     }
 }

@@ -8,6 +8,7 @@ const songsURL = "http://localhost:3000/songs"
 const playlistURL = "http://localhost:3000/playlists"
 const commentsURL = "http://localhost:3000/comments"
 const likesURL = "http://localhost:3000/likes"
+const usersURL = "http://localhost:3000/users"
 const headers = {
   "Content-Type": "application/json",
   "Accept": "application/json"
@@ -22,14 +23,15 @@ class App extends React.Component {
     playlists: [],
     comments: [],
     likes: [],
+    users: [],
     sort: "",
     text: ""
   }
 
   componentDidMount(){
-    Promise.all([fetch(songsURL), fetch(playlistURL), fetch(commentsURL), fetch(likesURL)])
-    .then(([songsResponse, playlistResponse, commentsResponse, likesResponse]) => Promise.all([songsResponse.json(), playlistResponse.json(), commentsResponse.json(), likesResponse.json()]))
-    .then(([songsOBJ, playlistOBJ, commentsOBJ, likesOBJ]) => this.setState({songs: songsOBJ, playlists: playlistOBJ, comments: commentsOBJ, likes: likesOBJ}))
+    Promise.all([fetch(songsURL), fetch(playlistURL), fetch(commentsURL), fetch(likesURL), fetch(usersURL)])
+    .then(([songsResponse, playlistResponse, commentsResponse, likesResponse, usersResponse]) => Promise.all([songsResponse.json(), playlistResponse.json(), commentsResponse.json(), likesResponse.json(), usersResponse.json()]))
+    .then(([songsOBJ, playlistOBJ, commentsOBJ, likesOBJ, usersOBJ]) => this.setState({songs: songsOBJ, playlists: playlistOBJ, comments: commentsOBJ, likes: likesOBJ, users: usersOBJ}))
   }
 
   setCurrentUser = (data) => {this.setState({currentUser: data.user, currentUserImage: data.image})}
@@ -75,9 +77,19 @@ class App extends React.Component {
     )
   }
 
+  updateUser = (data) => {
+    console.log(data)
+    this.setState({
+      currentUser: data,
+      users: this.state.users.map(user => user.id === data.id ? data : user)
+    })
+  }
+
   likePost = (event) => {
     event.preventDefault()
-    let newLike = {song_id: event.target.value, user_id: this.state.currentUser.id}
+    let newLike = {song_id: parseInt(event.target.value), user_id: this.state.currentUser.id}
+
+    console.log(newLike)
 
     fetch(likesURL, {
       method: "POST",
@@ -85,24 +97,17 @@ class App extends React.Component {
       body: JSON.stringify(newLike)
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => this.setState({likes: [...this.state.likes, data]}))
   }
 
-  // addNewLike = (songID, data) => {
-  //   const copies = this.state.songs.map(song => {
-  //       if(songID !== song.id){
-  //         return song
-  //       }
-  //       else{
-  //         const copy = {
-  //           ...song
-  //         }
-  //         copy.likes.push(data)
-  //         return copy
-  //       }
-  //   })
-  //   this.setState({songs: copies})
-  // }
+  deleteLike = (event) => {
+    event.preventDefault()
+    fetch(`${likesURL}/${event.target.value}`, {
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => this.setState({likes: data}))
+  }
 
   render(){
     const {currentUser, currentUserImage, playlists, songs, sort, text, comments, likes} = this.state
@@ -111,7 +116,7 @@ class App extends React.Component {
     let userSongs = songs.filter(song => currentUser ? song.user.id === currentUser.id ? song : null : null)
     let userPlaylists = playlists.filter(playlist => currentUser ? playlist.user.id === currentUser.id ? playlist : null : null)
 
-    console.log(this.state.likes)
+    console.log("likes stae", this.state.likes)
     return (
       <div className="App">
         <NavBar currentUser={currentUser} logout={this.logout}/>
@@ -136,6 +141,7 @@ class App extends React.Component {
                 comments={comments}
                 likePost={this.likePost}
                 likes={likes}
+                deleteLike={this.deleteLike}
               />
             }
           />
@@ -152,7 +158,7 @@ class App extends React.Component {
           <Route exact path="/profile" 
             render={() => { 
               return currentUser ? 
-              (<ProfilePage currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs}/>) : (<Login setCurrentUser={this.setCurrentUser}/>)
+              (<ProfilePage currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs} updateUser={this.updateUser}/>) : (<Login setCurrentUser={this.setCurrentUser}/>)
             }}
           />
         </Switch>

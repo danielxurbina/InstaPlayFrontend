@@ -4,9 +4,7 @@ class Comment extends React.Component{
     render(){
         return(
             <div>
-                <h4> 
-                    {this.props.comment.song.id === this.props.songs.id ? this.props.comment.user.username : null} {this.props.comment.song.id === this.props.songs.id ? this.props.comment.text : null}
-                </h4>
+                <h4> {this.props.comment.user.username} {this.props.comment.text} </h4>
             </div>
         )
     }
