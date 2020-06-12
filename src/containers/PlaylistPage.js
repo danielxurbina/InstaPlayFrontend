@@ -4,7 +4,7 @@ import PlaylistContainer from './PlaylistContainer'
 
 function PlaylistPage(props) {
     const [value, setValue] = useState(false);
-    const {userPlaylists, currentUser, playlistImages} = props
+    const {userPlaylists, currentUser} = props
     return(
         <div>
             <h1>Playlists</h1>

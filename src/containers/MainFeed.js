@@ -5,7 +5,7 @@ import MainFeedContainer from './MainFeedContainer.js'
 
 class MainFeed extends React.Component {
     render(){
-        const {songs, currentUser, userPlaylists} = this.props
+        const {songs, currentUser, userPlaylists, text, comments, likes} = this.props
         return(
             <div>
                 <Search searchPosts={this.props.searchPosts}/>
@@ -14,7 +14,16 @@ class MainFeed extends React.Component {
                     submitFormHandler={this.props.submitFormHandler}
                     currentUser={currentUser}
                 />
-                <MainFeedContainer songs={songs} userPlaylists={userPlaylists}/>
+                <MainFeedContainer 
+                    comments={comments}
+                    songs={songs} 
+                    userPlaylists={userPlaylists} 
+                    text={text} 
+                    commentSubmitHandler={this.props.commentSubmitHandler} 
+                    inputHandler={this.props.inputHandler}
+                    likePost={this.props.likePost}
+                    likes={likes}
+                />
             </div>
         )
     }
