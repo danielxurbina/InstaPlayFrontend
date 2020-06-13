@@ -115,6 +115,7 @@ class App extends React.Component {
     let Songs = songs.filter(song => song.user.username.toLowerCase().includes(sort.toLowerCase()))
     let userSongs = songs.filter(song => currentUser ? song.user.id === currentUser.id ? song : null : null)
     let userPlaylists = playlists.filter(playlist => currentUser ? playlist.user.id === currentUser.id ? playlist : null : null)
+    console.log(this.state.playlists)
 
     console.log("likes stae", this.state.likes)
     return (

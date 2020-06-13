@@ -58,12 +58,6 @@ class Posts extends React.Component {
         else {
            return <h4>Likes: {filteredLikes.length} </h4>
         }
-            // if(filteredLikes.includes(id && this.props.likes.id)){
-            //     return <h4>Likes: {filteredLikes.length} <button className="likeButton" value={null} onClick={(event) => this.props.deleteLike(event)}>❤️</button></h4>
-            // }
-            // else{
-            //     return <h4>Likes: {filteredLikes.length} <button className="likeButton" value={id} onClick={(event) => this.props.likePost(event)}>❤️</button> </h4>
-            // }
     }
 
     render(){
@@ -88,5 +82,3 @@ class Posts extends React.Component {
 }
 
 export default Posts
-
-// {likes.length}
