@@ -9,20 +9,14 @@ class PlaylistSongs extends React.Component {
     state = {songs: []}
 
     componentDidMount(){
-        let playlistSong = {title: this.props.playlistSongs.title}
-        fetch('http://localhost:3000/song_list', {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(playlistSong)
-        })
+        fetch(`http://localhost:3000/songs/${this.props.playlistSongs.id}`)
         .then(response => response.json())
-        .then(data => this.setState({songs: data.song}))
+        .then(data =>  this.setState({songs: data.song}))
     }
 
     render(){
-        // console.log(this.props.playlistSongs)
         return(
-            <audio ref="audio_tag" src={`http://localhost:3000/${this.state.songs}`} controls/>
+            <audio ref="audio_tag" src={this.state.songs} controls/>
         )
     }
 }
