@@ -1,12 +1,18 @@
 import React from 'react'
-// import { DirectUpload } from 'activestorage';
+import Home from './Home'
+import About from './About'
+import Footer from './Footer'
+import './home.css'
 
-class HomePage extends React.Component {
-    render(){
+export default function HomePage() {
         return(
-           <div>Homepage</div>
+            <>
+                <main>
+                    <Home />
+                    <About />
+                </main>
+                <Footer />
+            </>
         )
-    }
 }
 
-export default HomePage

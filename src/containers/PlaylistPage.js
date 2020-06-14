@@ -12,7 +12,7 @@ function PlaylistPage(props) {
                 isOn={value} 
                 handleToggle={() => setValue(!value)}  
                 onColor="#EF476F"
-                createPlaylist={props.createPlaylist} 
+                createPlaylistHandler={props.createPlaylistHandler} 
                 currentUser={currentUser} 
             />
             {userPlaylists.map(userPlaylist => <PlaylistContainer userPlaylist={userPlaylist} key={userPlaylist.id} currentUser={currentUser} routerProps={props.routerProps}/>)}

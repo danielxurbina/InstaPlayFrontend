@@ -11,7 +11,7 @@ function PlaylistForm(props) {
         </label>
         {props.isOn ? 
         <div>
-            <form onSubmit={props.createPlaylist}>
+            <form onSubmit={props.createPlaylistHandler}>
               <input type="text" name="title" placeholder="Title"/>
               <input type="text" name="description" placeholder="Description"/>
               <input type="file" name="image"/>

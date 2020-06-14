@@ -12,7 +12,7 @@ class ProfilePageContainer extends React.Component {
         password: "", 
         bio: "", 
         background_image_url: "", 
-        image: {}
+        image: ""
     }
 
     componentDidMount(){
@@ -24,7 +24,8 @@ class ProfilePageContainer extends React.Component {
                 username: data.username,
                 password: data.password,
                 bio: data.bio,
-                background_image_url: data.background_image_url
+                background_image_url: data.background_image_url,
+                image: data.image
             })
         )
     }
@@ -64,13 +65,14 @@ class ProfilePageContainer extends React.Component {
     }
 
     render(){
-        const {userSongs, currentUser, currentUserImage} = this.props
-        const {name, bio} = this.props.currentUser
+        const {userSongs, currentUser} = this.props
+        const {name, bio, image} = this.props.currentUser
+        console.log(this.props.currentUser)
         return(
             <div>
                 <h1>{name}</h1>
                 <p>{bio}</p>
-                <img className="profile-image" src={`http://localhost:3000/${currentUserImage}`} alt={this.props.currentUser.name}/>
+                <img className="profile-image" src={image} alt={name}/>
                 <br></br>
                 {this.state.isClicked ? this.renderEditForm() : ''}
                 <button onClick={this.toggleForm}>Edit Profile</button>
