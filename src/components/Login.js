@@ -23,7 +23,6 @@ class Login extends Component {
         })
         .then(response => response.json())
         .then(data => 
-            // console.log(data)
             this.props.setCurrentUser(data),
             this.props.routerProps.history.push('/homepage')
         )

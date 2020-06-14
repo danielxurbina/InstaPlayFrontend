@@ -10,29 +10,11 @@ const headers = {
 }
 
 class Posts extends React.Component {
-
-    state = {postSongs: []}
-
-    componentDidMount(){
-        this.getPostSongs()
-    }
-
-    // this method is to get the songs of the post
-    getPostSongs = () => {
-        let song = {title: this.props.song.title}
-        fetch('http://localhost:3000/song_list', {
-             method: "POST",
-             headers: headers,
-             body: JSON.stringify(song)
-         })
-         .then(response => response.json())
-         .then(data => this.setState({postSongs: data.song}))
-    }
-
+    
     // this method adds a song to a playlist
     handleClick = (playlist_id, id) => {
         let addSong = {song_id: id, playlist_id: playlist_id}
-        // console.log(addSong)
+
         fetch(addSongURL, {
             method: "POST",
             headers: headers,
@@ -61,9 +43,9 @@ class Posts extends React.Component {
     }
 
     render(){
-        const {post_image, description, id} = this.props.song
+        const {post_image, description, id, song} = this.props.song
         const {username} = this.props.song.user
-        const {userPlaylists, text, comments, likes} = this.props
+        const {userPlaylists, text, comments} = this.props
         const filteredComments = comments.filter(comment => comment.song.id === id)
         return(
             <div>
@@ -73,7 +55,7 @@ class Posts extends React.Component {
                 </DropdownButton>
                 <h4>{username} {description}</h4>
                 {this.checkLikes()}
-                <audio ref="audio_tag" src={`http://localhost:3000/${this.state.postSongs}`} controls/>
+                <audio ref="audio_tag" src={song} controls/>
                 {filteredComments.map(comment => <Comment comment={comment} key={comment.id} songs={this.props.song}/>)}
                 <CommentForm text={text} commentSubmitHandler={this.props.commentSubmitHandler} inputHandler={this.props.inputHandler} songID={id}/>
             </div>

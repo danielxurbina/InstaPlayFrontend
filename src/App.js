@@ -18,7 +18,6 @@ class App extends React.Component {
 
   state = {
     currentUser: null, 
-    currentUserImage: null, 
     songs: [], 
     playlists: [],
     comments: [],
@@ -34,7 +33,7 @@ class App extends React.Component {
     .then(([songsOBJ, playlistOBJ, commentsOBJ, likesOBJ, usersOBJ]) => this.setState({songs: songsOBJ, playlists: playlistOBJ, comments: commentsOBJ, likes: likesOBJ, users: usersOBJ}))
   }
 
-  setCurrentUser = (data) => {this.setState({currentUser: data.user, currentUserImage: data.image})}
+  setCurrentUser = (data) => {this.setState({currentUser: data})}
 
   logout = () => {this.setState({currentUser: null})}
 
@@ -55,7 +54,7 @@ class App extends React.Component {
     .then(data => this.setState({text: "", comments: [...this.state.comments, data]}))
   }
 
-  submitFormHandler = (event) => {
+  songSubmitHandler = (event) => {
     event.preventDefault()
     const formSongData = new FormData(event.target);
 
@@ -66,7 +65,7 @@ class App extends React.Component {
     )
   }
 
-  createPlaylist = (event) => {
+  createPlaylistHandler = (event) => {
     event.preventDefault()
     const formPlaylistData = new FormData(event.target)
 
@@ -78,18 +77,34 @@ class App extends React.Component {
   }
 
   updateUser = (data) => {
-    console.log(data)
     this.setState({
       currentUser: data,
       users: this.state.users.map(user => user.id === data.id ? data : user)
     })
   }
 
+  updatePlaylistInfo = (event, playlistID) => {
+    event.preventDefault()
+    const formPlaylistData = new FormData(event.target)
+
+    axios.patch(`${playlistURL}/${playlistID}`, formPlaylistData)
+    .then(response => {
+      let updatedPlaylist = this.state.playlists.map(playlist => {
+        return playlist.id === playlistID ? response.data : playlist
+      })
+      this.setState({playlists: updatedPlaylist})
+    })
+  }
+
+  // updatePlaylistInfo = (data) => {
+  //   this.setState({
+  //     playlists: this.state.playlists.map(playlist => playlist.id !== data.id ? playlist : data)
+  //   })
+  // }
+
   likePost = (event) => {
     event.preventDefault()
     let newLike = {song_id: parseInt(event.target.value), user_id: this.state.currentUser.id}
-
-    console.log(newLike)
 
     fetch(likesURL, {
       method: "POST",
@@ -110,28 +125,24 @@ class App extends React.Component {
   }
 
   render(){
-    const {currentUser, currentUserImage, playlists, songs, sort, text, comments, likes} = this.state
+    const {currentUser, playlists, songs, sort, text, comments, likes} = this.state
 
     let Songs = songs.filter(song => song.user.username.toLowerCase().includes(sort.toLowerCase()))
     let userSongs = songs.filter(song => currentUser ? song.user.id === currentUser.id ? song : null : null)
     let userPlaylists = playlists.filter(playlist => currentUser ? playlist.user.id === currentUser.id ? playlist : null : null)
-    console.log(this.state.playlists)
-
-    console.log("likes stae", this.state.likes)
     return (
       <div className="App">
         <NavBar currentUser={currentUser} logout={this.logout}/>
         <Switch>
           <Route exact path="/" component={HomePage}/>
-          <Route exact path="/playlists/:id" render={(props) => <Playlists {...props} routerProps={props} currentUser={currentUser}/>}/>
+          <Route exact path="/playlists/:id" render={(props) => <Playlists {...props} updatePlaylistInfo={this.updatePlaylistInfo} routerProps={props} currentUser={currentUser}/>}/>
           <Route exact path="/login" render={(props) => <Login setCurrentUser={this.setCurrentUser} routerProps={props}/>}/>
           <Route exact path="/signup" render={(props) => <Signup updateCurrentUser={this.updateCurrentUser} routerProps={props}/>}/>
           <Route exact path="/homepage" 
             render={(props) => 
               <MainFeed 
                 routerProps={props} 
-                inputHandler={this.inputHandler} 
-                submitFormHandler={this.submitFormHandler}
+                songSubmitHandler={this.songSubmitHandler}
                 songs={Songs}
                 searchPosts={this.searchPosts}
                 currentUser={currentUser}
@@ -152,14 +163,14 @@ class App extends React.Component {
                 routerProps={props} 
                 userPlaylists={userPlaylists} 
                 currentUser={currentUser} 
-                createPlaylist={this.createPlaylist}
+                createPlaylistHandler={this.createPlaylistHandler}
               />
             }
           />
           <Route exact path="/profile" 
             render={() => { 
               return currentUser ? 
-              (<ProfilePage currentUser={currentUser} currentUserImage={currentUserImage} userSongs={userSongs} updateUser={this.updateUser}/>) : (<Login setCurrentUser={this.setCurrentUser}/>)
+              (<ProfilePage currentUser={currentUser} userSongs={userSongs} updateUser={this.updateUser}/>) : (<Login setCurrentUser={this.setCurrentUser}/>)
             }}
           />
         </Switch>

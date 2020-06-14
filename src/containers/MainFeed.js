@@ -11,7 +11,7 @@ class MainFeed extends React.Component {
                 <Search searchPosts={this.props.searchPosts}/>
                 <MainFeedForm 
                     inputHandler={this.props.inputHandler}
-                    submitFormHandler={this.props.submitFormHandler}
+                    songSubmitHandler={this.props.songSubmitHandler}
                     currentUser={currentUser}
                 />
                 <MainFeedContainer 

@@ -5,7 +5,7 @@ class MainFeedForm extends React.Component {
         const {currentUser} = this.props
         return(
             <div className="ui segment">
-            <form className="ui form" onSubmit={this.props.submitFormHandler}>
+            <form className="ui form" onSubmit={this.props.songSubmitHandler}>
               <div className="inline fields">
                 <input type="file" name="song" />
                 <input type="text" name="title" placeholder="Song Title"/>
