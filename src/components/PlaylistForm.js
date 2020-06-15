@@ -5,8 +5,8 @@ function PlaylistForm(props) {
     console.log(props.isOn)
     return (
       <>
-        <input checked={props.isOn} onChange={props.handleToggle} className="react-switch-checkbox" id={`react-switch-new`} type="checkbox"/>
-        <label style={{ background: props.isOn && props.onColor }} className="react-switch-label" htmlFor={`react-switch-new`}>
+        <input checked={props.isOn} onChange={props.handleToggle} className="react-switch-checkbox" id={`react-switch-new`} type="checkbox"></input>
+         <label style={{ background: props.isOn && props.onColor }} className="react-switch-label" htmlFor={`react-switch-new`}>
             <span className={`react-switch-button`} />
         </label>
         {props.isOn ? 

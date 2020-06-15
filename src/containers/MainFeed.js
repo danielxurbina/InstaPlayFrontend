@@ -1,17 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import MainFeedForm from '../components/MainFeedForm.js'
 import Search from '../components/Search.js'
 import MainFeedContainer from './MainFeedContainer.js'
 
-class MainFeed extends React.Component {
-    render(){
-        const {songs, currentUser, userPlaylists, text, comments, likes} = this.props
+function MainFeed(props){
+        const [value, setValue] = useState(false);
+        const {songs, currentUser, userPlaylists, text, comments, likes} = props
         return(
             <div>
-                <Search searchPosts={this.props.searchPosts}/>
+                <Search searchPosts={props.searchPosts}/>
                 <MainFeedForm 
-                    inputHandler={this.props.inputHandler}
-                    songSubmitHandler={this.props.songSubmitHandler}
+                    isOn={value} 
+                    handleToggle={() => setValue(!value)}  
+                    onColor="#EF476F"
+                    inputHandler={props.inputHandler}
+                    songSubmitHandler={props.songSubmitHandler}
                     currentUser={currentUser}
                 />
                 <MainFeedContainer 
@@ -19,16 +22,15 @@ class MainFeed extends React.Component {
                     currentUser={currentUser}
                     userPlaylists={userPlaylists} 
                     text={text} 
-                    commentSubmitHandler={this.props.commentSubmitHandler} 
-                    inputHandler={this.props.inputHandler}
-                    likePost={this.props.likePost}
+                    commentSubmitHandler={props.commentSubmitHandler} 
+                    inputHandler={props.inputHandler}
+                    likePost={props.likePost}
                     likes={likes}
                     comments={comments}
-                    deleteLike={this.props.deleteLike}
+                    deleteLike={props.deleteLike}
                 />
             </div>
         )
-    }
 }
 
 export default MainFeed
