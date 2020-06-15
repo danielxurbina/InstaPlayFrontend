@@ -5,7 +5,7 @@ class MainFeedContainer extends React.Component {
     render(){
         const {songs, userPlaylists, text, comments, likes, currentUser} = this.props
         return(
-            <div>
+            <div className="posts-container-wrapper">
                 {songs.map(song => 
                     <Posts 
                         key={song.id} 

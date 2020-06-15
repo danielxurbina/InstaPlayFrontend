@@ -3,6 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
+import './posts.css'
+import { Card, Avatar } from 'antd';
 const addSongURL = "http://localhost:3000/add_song_to_playlists"
 const headers = {
     "Content-Type": "application/json",
@@ -38,7 +40,17 @@ class Posts extends React.Component {
             }
         }
         else {
-           return <h4>Likes: {filteredLikes.length} </h4>
+            return  <div>
+                        <div className="like-section" key="likes-icons-container" onClick={null}>
+                            <div className="like-section-wrapper">
+                                <i className="far fa-heart" />
+                            </div>
+                            <div className="like-section-wrapper">
+                                <i className="far fa-comment" />
+                            </div>
+                        </div>
+                        <p className="like-number">{filteredLikes.length} likes</p>
+                    </div>
         }
     }
 
@@ -47,20 +59,68 @@ class Posts extends React.Component {
         const {username} = this.props.song.user
         const {userPlaylists, text, comments} = this.props
         const filteredComments = comments.filter(comment => comment.song.id === id)
+        const { Meta } = Card;
         return(
-            <div>
-                <img src={post_image} alt={username}/>
-                <DropdownButton id="dropdown-basic-button" title="Add Song To Playlist">
-                   {userPlaylists.map(playlist => <Dropdown.Item onClick={() => this.handleClick(playlist.id, id)}>{playlist.title}</Dropdown.Item>)}
-                </DropdownButton>
-                <h4>{username} {description}</h4>
+            // <div>
+            //     <img src={post_image} alt={username}/>
+                // <DropdownButton id="dropdown-basic-button" title="Add Song To Playlist">
+                //    {userPlaylists.map(playlist => <Dropdown.Item onClick={() => this.handleClick(playlist.id, id)}>{playlist.title}</Dropdown.Item>)}
+                // </DropdownButton>
+            //     <h4>{username} {description}</h4>
+            //     {this.checkLikes()}
+            //     <audio ref="audio_tag" src={song} controls/>
+            //     {filteredComments.map(comment => <Comment comment={comment} key={comment.id} songs={this.props.song}/>)}
+            //     <CommentForm text={text} commentSubmitHandler={this.props.commentSubmitHandler} inputHandler={this.props.inputHandler} songID={id}/>
+            // </div>
+            <div className="post-border">
+                <div className="post-header">
+                    <div className="post-thumb-wrapper">
+                        <img  className="post-thumb" src="user image goes here"/>
+                    </div>
+                    <h2>{username}</h2>
+                    <DropdownButton id="dropdown-basic-button" title="Add Song To Playlist">
+                        {userPlaylists.map(playlist => <Dropdown.Item onClick={() => this.handleClick(playlist.id, id)}>{playlist.title}</Dropdown.Item>)}
+                    </DropdownButton>
+                </div>
+                <div className="post-image-wrapper">
+                    <img alt="post thumbnail" className="post-image" src={post_image}/>
+                </div>
                 {this.checkLikes()}
-                <audio ref="audio_tag" src={song} controls/>
+                <div className="post-user-description">
+                    <span className="user">{username}</span>
+                    {' '}
+                    <span className="comment">{description}</span>
+                </div>
                 {filteredComments.map(comment => <Comment comment={comment} key={comment.id} songs={this.props.song}/>)}
                 <CommentForm text={text} commentSubmitHandler={this.props.commentSubmitHandler} inputHandler={this.props.inputHandler} songID={id}/>
-            </div>
+          </div>
         )
     }
 }
 
 export default Posts
+
+            
+            // <div class="Instagram-card">
+            //     <div class="Instagram-card-header">
+            //         <img src="" class="Instagram-card-user-image"/>
+            //         <a class="Instagram-card-user-name">{username}</a>
+            //     </div>
+
+            //     <div class="Instagram-card-image">
+            //         <img src={post_image} height="600px"/>
+            //     </div>
+
+            //     <div class="Instagram-card-content">
+            //         {this.checkLikes()}
+            //         <p>
+            //         <a class="Instagram-card-content-user">{username}</a> {description}
+            //         </p>
+            //         <p class="comments">See all 12 comments</p>
+            //         {filteredComments.map(comment => <Comment comment={comment} key={comment.id} songs={this.props.song}/>)}
+            //     </div>
+
+            //     <div class="Instagram-card-footer">
+            //         <CommentForm text={text} commentSubmitHandler={this.props.commentSubmitHandler} inputHandler={this.props.inputHandler} songID={id}/>
+            //     </div>
+            // </div>

@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
 
-html,
+/* html,
 body {
   width: 105%;
   padding: 0px;
   margin: 0px;
   font-size: 20px;
   font-family: "Nunito", sans-serif;
-  /* background-color: black; */
-} 
+  background-color: black; */
 
 main {
   background-color:black;
@@ -17,6 +16,15 @@ main {
  main > *:nth-child(odd) {
   background-color: black;
 } 
+
+.home-text {
+  width: 60%;
+  padding: 0px;
+  margin: 0px;
+  font-size: 20px;
+  font-family: "Nunito", sans-serif;
+  background-color: black;
+}
 
 section {
   display: flex;
