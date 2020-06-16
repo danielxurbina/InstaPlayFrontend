@@ -3,7 +3,7 @@ import Posts from '../components/Posts.js'
 
 class MainFeedContainer extends React.Component {
     render(){
-        const {songs, userPlaylists, text, comments, likes, currentUser} = this.props
+        const {songs, userPlaylists, text, comments, likes, currentUser, users} = this.props
         return(
             <div className="posts-container-wrapper">
                 {songs.map(song => 
@@ -19,6 +19,7 @@ class MainFeedContainer extends React.Component {
                         likes={likes}
                         comments={comments}
                         deleteLike={this.props.deleteLike}
+                        users={users}
                     />
                 )}
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Comment.css'
+import '../styles/comment.css'
 
 class CommentForm extends React.Component{
     render(){

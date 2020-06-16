@@ -5,7 +5,7 @@ import MainFeedContainer from './MainFeedContainer.js'
 
 function MainFeed(props){
         const [value, setValue] = useState(false);
-        const {songs, currentUser, userPlaylists, text, comments, likes} = props
+        const {songs, currentUser, userPlaylists, text, comments, likes, users} = props
         return(
             <div>
                 <Search searchPosts={props.searchPosts}/>
@@ -28,6 +28,7 @@ function MainFeed(props){
                     likes={likes}
                     comments={comments}
                     deleteLike={props.deleteLike}
+                    users={users}
                 />
             </div>
         )

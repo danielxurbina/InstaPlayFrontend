@@ -9,7 +9,7 @@ class PlaylistContainer extends React.Component{
         console.log(this.props.userPlaylist)
         return(
             <React.Fragment>
-            <Grid style={{position: "relative", minHeight: "100vh" }} container alignItems="center" justify="center">
+            <Grid style={{position: "relative", display: "flex", minHeight: "100vh" }} container alignItems="center" justify="center">
               <Card style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-100%, -100%)", width: 300, height: 300, borderRadius: 50, cursor: 'pointer' }} elevation={16}>
                 <CardContent style={{padding: 0, position: "absolute", top: 0, left: 0,}}>
                   <h1 style={{position: 'absolute', color: 'white', top: 8, left: '38%'}}>{title}</h1>
@@ -18,6 +18,7 @@ class PlaylistContainer extends React.Component{
               </Card>
             </Grid>
           </React.Fragment>
+
         )
     }
 }

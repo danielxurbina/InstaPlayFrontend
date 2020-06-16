@@ -1,0 +1,105 @@
+/* body {
+    margin: 0;
+    padding: 0;
+  } */
+  
+  .Login {
+    height: 500px;
+    min-height: 100vh;
+    background-image: url("https://images.dailyhive.com/20161018075452/Kanye-West-%40-Rogers-Arena-Brandon-Artis-Photography-6-e1476804151529.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  
+  .SignUp{
+    height: 500px;
+    min-height: 100vh;
+    background-image: url("https://denver.cbslocal.com/wp-content/uploads/sites/14984641/2013/12/tha_flamming_lips_10-29-13_2-59.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  
+  .form {
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+  
+  .input-container {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+  }
+  
+  .input {
+    padding: 5px 15px 5px 5px;
+  }
+  
+  .forgotten-password {
+    font-size: 16px;
+    margin-right: 12px;
+    align-self: center;
+    margin-top: 7px;
+  }
+  
+  #login-btn {
+    align-self: center;
+    padding: 7px 30px;
+    margin-top: 30px;
+    border: none;
+    color: black;
+    background-color: white;
+    box-shadow: 2px 2px 2px white;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in;
+  }
+  
+  #login-btn:hover {
+    background-color: rgb(143, 142, 142);
+    box-shadow: none;
+    transform: translateX(1px) translateY(1px);
+  }
+  
+  .signup-label {
+    position: relative;
+    bottom: -10px;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: rgba(0, 17, 251, 0.712);
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    color: rgba(0, 17, 251, 0.712);
+  }
+  

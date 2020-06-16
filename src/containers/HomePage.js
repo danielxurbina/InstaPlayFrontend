@@ -2,7 +2,7 @@ import React from 'react'
 import Home from './Home'
 import About from './About'
 import Footer from './Footer'
-import './home.css'
+import '../styles/home.css'
 
 export default function HomePage() {
         return(

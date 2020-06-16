@@ -1,5 +1,6 @@
 import React from 'react'
 import PostCards from '../components/PostCards'
+import '../styles/ProfilePage.css'
 import axios from 'axios'
 const usersURL = "http://localhost:3000/users"
 
@@ -75,7 +76,7 @@ class ProfilePageContainer extends React.Component {
                 <img className="profile-image" src={image} alt={name}/>
                 <br></br>
                 {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={this.toggleForm}>Edit Profile</button>
+                <button class="b1 b2 b3 b4" type="button" onClick={this.toggleForm}>Edit Profile</button>
                 {userSongs.map(userSong => <PostCards userSong={userSong} key={userSong.id} currentUser={currentUser}/>)}
             </div>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import './profile.css'
+import '../styles/profile.css'
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json"

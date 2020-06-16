@@ -2,7 +2,19 @@
   text-align: center;
 }
 
-/* .App .likeButton {
-  width: 60px;
-  height: 40px;
-} */
+.likeButton{
+  position: relative;
+  top: 2px;
+  margin-left: 1px;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+  .likeButton:focus{ outline-color: transparent }
+  .likeButton.unlike{
+    font-size: 23px;
+    margin-left: 1px;
+  }
