@@ -125,7 +125,7 @@ class App extends React.Component {
   }
 
   render(){
-    const {currentUser, playlists, songs, sort, text, comments, likes} = this.state
+    const {currentUser, playlists, songs, sort, text, comments, likes, users} = this.state
 
     let Songs = songs.filter(song => song.user.username.toLowerCase().includes(sort.toLowerCase()))
     let userSongs = songs.filter(song => currentUser ? song.user.id === currentUser.id ? song : null : null)
@@ -154,6 +154,7 @@ class App extends React.Component {
                 likePost={this.likePost}
                 likes={likes}
                 deleteLike={this.deleteLike}
+                users={users}
               />
             }
           />

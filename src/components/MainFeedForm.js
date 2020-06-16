@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import './form.css'
+import { Button, Form, FormGroup, Input } from 'reactstrap';
+import '../styles/form.css'
 
 function MainFeedForm(props){
         const {currentUser} = props
@@ -11,15 +11,6 @@ function MainFeedForm(props){
                     <span className={`react-switch-button`} />
                 </label>
                 {props.isOn ? 
-                // <div>
-                //     <form onSubmit={props.createPlaylistHandler}>
-                //       <input type="text" name="title" placeholder="Title"/>
-                //       <input type="text" name="description" placeholder="Description"/>
-                //       <input type="file" name="image"/>
-                //       {props.currentUser ? <input type="hidden" name="user_id" value={props.currentUser.id}/> : null}
-                //       <button className="playlistFormButton" type="submit">Submit</button>
-                //     </form>
-                // </div>
                     <Form inline onSubmit={props.songSubmitHandler}>
                       <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Input className="input1" type="text" name="title" placeholder="Title" />
