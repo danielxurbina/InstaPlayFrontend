@@ -1,9 +1,10 @@
 .nav-container {
+    color: white;
     display: flex;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    background-color: var(--color-primary-1);
+    background-color: rgb(19, 19, 19);
     /* position:fixed  */
   }
   
@@ -26,6 +27,7 @@
     cursor: pointer;
     color: inherit;
     text-decoration: none;
+    margin-left: 13px
   }
   
   .nav-element:hover {

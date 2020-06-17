@@ -34,7 +34,7 @@ class Signup extends React.Component {
             <div className="SignUp">
             <form className="form" onSubmit={this.handleSubmit}>
             <div className="input-container">
-              <label className="label">Name: </label>
+              <label className="label"> </label>
               <input
                 type="text"
                 name="name"
@@ -45,7 +45,7 @@ class Signup extends React.Component {
               />
             </div>
             <div className="input-container">
-              <label className="label">Username: </label>
+              <label className="label"></label>
               <input
                 type="text"
                 name="username"
@@ -56,7 +56,7 @@ class Signup extends React.Component {
               />
             </div>
             <div className="input-container">
-              <label className="label">Password: </label>
+              <label className="label"> </label>
               <input
                 type="password"
                 name="password"

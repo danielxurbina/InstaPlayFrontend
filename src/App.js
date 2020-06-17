@@ -83,25 +83,6 @@ class App extends React.Component {
     })
   }
 
-  updatePlaylistInfo = (event, playlistID) => {
-    event.preventDefault()
-    const formPlaylistData = new FormData(event.target)
-
-    axios.patch(`${playlistURL}/${playlistID}`, formPlaylistData)
-    .then(response => {
-      let updatedPlaylist = this.state.playlists.map(playlist => {
-        return playlist.id === playlistID ? response.data : playlist
-      })
-      this.setState({playlists: updatedPlaylist})
-    })
-  }
-
-  // updatePlaylistInfo = (data) => {
-  //   this.setState({
-  //     playlists: this.state.playlists.map(playlist => playlist.id !== data.id ? playlist : data)
-  //   })
-  // }
-
   likePost = (event) => {
     event.preventDefault()
     let newLike = {song_id: parseInt(event.target.value), user_id: this.state.currentUser.id}
@@ -126,16 +107,16 @@ class App extends React.Component {
 
   render(){
     const {currentUser, playlists, songs, sort, text, comments, likes, users} = this.state
-
     let Songs = songs.filter(song => song.user.username.toLowerCase().includes(sort.toLowerCase()))
     let userSongs = songs.filter(song => currentUser ? song.user.id === currentUser.id ? song : null : null)
     let userPlaylists = playlists.filter(playlist => currentUser ? playlist.user.id === currentUser.id ? playlist : null : null)
+    console.log(this.state.playlists)
     return (
       <div className="App">
         <NavBar currentUser={currentUser} logout={this.logout}/>
         <Switch>
           <Route exact path="/" component={HomePage}/>
-          <Route exact path="/playlists/:id" render={(props) => <Playlists {...props} updatePlaylistInfo={this.updatePlaylistInfo} routerProps={props} currentUser={currentUser}/>}/>
+          <Route exact path="/playlists/:id" render={(props) => <Playlists {...props} playlists={playlists} routerProps={props} currentUser={currentUser}/>}/>
           <Route exact path="/login" render={(props) => <Login setCurrentUser={this.setCurrentUser} routerProps={props}/>}/>
           <Route exact path="/signup" render={(props) => <Signup updateCurrentUser={this.updateCurrentUser} routerProps={props}/>}/>
           <Route exact path="/homepage" 

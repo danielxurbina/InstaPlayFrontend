@@ -1,5 +1,6 @@
 import React from 'react'
 import PlaylistSongs from '../components/PlaylistSongs'
+import axios from 'axios'
 const playlistURL = "http://localhost:3000/playlists"
 
 class Playlist extends React.Component{
@@ -35,7 +36,7 @@ class Playlist extends React.Component{
         const {description, title, playlistID} = this.state
         const {currentUser} = this.props
         return(
-            <form onSubmit={(event) => this.props.updatePlaylistInfo(event, playlistID)}>
+            <form onSubmit={(event) => this.updatePlaylistInfo(event, playlistID)}>
                 <input type="file" name="image" />
                 <input type="text" name="description" value={description} placeholder="Description" onChange={(event) => this.handleFormChange(event)}/>
                 <input type="text" name="title" value={title} placeholder="Title" onChange={(event) => this.handleFormChange(event)}/>
@@ -45,18 +46,28 @@ class Playlist extends React.Component{
         )
     }
 
+    updatePlaylistInfo = (event, playlistID) => {
+        event.preventDefault()
+        const formPlaylistData = new FormData(event.target)
+    
+        axios.patch(`${playlistURL}/${playlistID}`, formPlaylistData)
+        .then(response => this.setState({playlist: response.data}))
+      }
+
     render(){
         const {playlistSongs, user} = this.state
         const {image, title, description} = this.state.playlist
+        // let filteredPlaylist = this.props.playlist.filter(playlist => playlist.id === this.props.match.params.id)
+        // console.log(this.props.playlist === this.props.match.params.id ? this.props.playlist : null)
         return(
-            <div>
-                <h3>Playlist</h3>
-                <img src={image}/>
-                <h1>{title}</h1>
-                <h4>{description}</h4>
-                <h4>Created By: {user.username}</h4>
+            <div className="playlist-page-div">
+                <h3 className="playlist-page-type">Playlist</h3>
+                <img className="playlist-page-image" src={image}/>
+                <h1 className="playlist-page-title">{title}</h1>
+                <h4 className="playlist-page-description">{description}</h4>
+                <h4 className="playlist-page-username">Created By: {user.username}</h4>
                 {this.state.isClicked ? this.renderEditForm() : ''}
-                <button onClick={this.toggleForm}>Edit Playlist</button>
+                <button className="playlist-page-edit-button" onClick={this.toggleForm}>Edit Playlist</button>
                 <br></br>
                 {playlistSongs.map(playlistSong => <PlaylistSongs key={playlistSong.id} playlistSongs={playlistSong}/>)}
             </div>

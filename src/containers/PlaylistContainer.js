@@ -2,22 +2,27 @@ import React from 'react'
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import '../styles/playlist.css'
 
 class PlaylistContainer extends React.Component{
     render(){
         const {title, id, image} = this.props.userPlaylist
-        console.log(this.props.userPlaylist)
+        // console.log(this.props.userPlaylist)
         return(
-            <React.Fragment>
-            <Grid style={{position: "relative", display: "flex", minHeight: "100vh" }} container alignItems="center" justify="center">
-              <Card style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-100%, -100%)", width: 300, height: 300, borderRadius: 50, cursor: 'pointer' }} elevation={16}>
-                <CardContent style={{padding: 0, position: "absolute", top: 0, left: 0,}}>
-                  <h1 style={{position: 'absolute', color: 'white', top: 8, left: '38%'}}>{title}</h1>
-                  <img src={image}  alt="cover" onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}/>
-                </CardContent>
-              </Card>
-            </Grid>
-          </React.Fragment>
+          //   <React.Fragment>
+          //   <Grid style={{position: "relative", display: "flex", minHeight: "100vh" }} container alignItems="center" justify="center">
+          //     <Card style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-100%, -100%)", width: 300, height: 300, borderRadius: 50, cursor: 'pointer' }} elevation={16}>
+          //       <CardContent style={{padding: 0, position: "absolute", top: 0, left: 0,}}>
+          //         <h1 style={{position: 'absolute', color: 'white', top: 8, left: '20%'}}>{title}</h1>
+          //         <img src={image}  alt="cover" onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}/>
+          //       </CardContent>
+          //     </Card>
+          //   </Grid>
+          // </React.Fragment>
+          <div className="gridItem" style={{backgroundImage: `url(${image})`}} onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}>
+                {/* <img className="playlist-image" src={image} onClick={() => this.props.routerProps.history.push(`/playlists/${id}`)}/> */}
+                <h1 className="playlist-title">{title}</h1>
+          </div>
 
         )
     }

@@ -15,6 +15,6 @@
   }
   .likeButton:focus{ outline-color: transparent }
   .likeButton.unlike{
-    font-size: 23px;
+    font-size: 15.7px;
     margin-left: 1px;
   }
