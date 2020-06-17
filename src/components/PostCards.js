@@ -13,7 +13,7 @@ class PostCards extends React.Component {
             <div>
                 <img src={post_image} alt={username}/>
                 <h3>{username} {description}</h3>
-                 <audio ref="audio_tag" src={song} controls/>
+                <audio ref="audio_tag" src={song} controls/>
             </div>
         )
     }

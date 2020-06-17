@@ -58,6 +58,24 @@ class Posts extends React.Component {
         const filteredComments = comments.filter(comment => comment.song.id === id)
         return(
             <>
+            <style type="text/css">
+                {
+                    `
+                        .btn-button{
+                            color: white;
+                        }
+
+                        .btn-button:hover{
+                            color: white;
+                        }
+
+                        .btn-button:focus{
+                            outline: none !important;
+                            box-shadow: none;
+                        }
+                    `
+                }
+            </style>
             <div className="post-border">
                 <div className="post-header">
                     <div className="post-thumb-wrapper">

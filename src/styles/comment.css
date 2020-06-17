@@ -9,12 +9,13 @@
 .user {
   font-size: 14px;
   margin-left: 5px;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 .user.one{
 position: relative;
 left: 6px;
+color: white;
 }
 .comment.two{
   position: relative;
@@ -30,10 +31,15 @@ left: 6px;
   padding: 10px;
   border: none;
   border-top: 1px solid #efefef;
-  color: #999;
+  background-color: rgb(56, 45, 45);
+  color: white;
+  outline: none;
 }
+
 .comment-button{
   margin: 10px 0;
   width: 100%;
   border: none;
+  background-color: rgb(149, 35, 35);
+  color: white;
 }

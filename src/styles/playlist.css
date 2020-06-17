@@ -42,26 +42,6 @@
     font-size: 36px;
     margin-top: 17px;
 }
-
-.playlist-audio{
-    outline: none;
-    margin-top: 30px;
-    margin-left: 300px;
-    width: 50rem;
-    display: flex;
-    border: none;
-    -webkit-transition:all 0.5s linear;
-    -moz-transition:all 0.5s linear;
-    -o-transition:all 0.5s linear;
-    transition:all 0.5s linear;
-    -moz-box-shadow: 2px 2px 4px 0px #ffffff;
-    -webkit-box-shadow:  2px 2px 4px 0px #ffffff;
-    box-shadow: 2px 2px 4px 0px #fafafa;
-    -moz-border-radius:7px 7px 7px 7px ;
-    -webkit-border-radius:7px 7px 7px 7px ;
-    border-radius: 28px 28px 28px 28px;
-}
-
 .playlist-page-div{
     background-color: black;
     color: white;
@@ -76,4 +56,42 @@
 .playlist-page-image{
    width: 300px;
    height: 300px;
+}
+
+.playlist-audio{
+  outline: none;
+  margin-top: 28px;
+  margin-left: 300px;
+  width: 48rem;
+  display: flex;
+  border: none;
+  transition: all 0.5s linear;
+  box-shadow: 2px 2px 4px 0px #fafafa;
+  border-radius: 28px 28px 28px 28px;
+  margin-bottom: 39px;
+    -webkit-transition:all 0.5s linear;
+    -moz-transition:all 0.5s linear;
+    -o-transition:all 0.5s linear;
+    transition:all 0.5s linear;
+    -moz-box-shadow: 2px 2px 4px 0px #ffffff;
+    -webkit-box-shadow:  2px 2px 4px 0px #ffffff;
+    box-shadow: 2px 2px 4px 0px #fafafa;
+    -moz-border-radius:7px 7px 7px 7px ;
+    -webkit-border-radius:7px 7px 7px 7px ;
+    border-radius: 28px 28px 28px 28px;
+}
+
+.playlist-page-song-artist{
+  margin-top: 15px;
+  margin-right: 28px;
+  margin-bottom: 10px;
+}
+
+.playlist-page-song-title{
+  margin-top: 13px;
+    margin-right: 28px;
+}
+
+.playlist-song-div{
+  margin-left: 30px;
 }
