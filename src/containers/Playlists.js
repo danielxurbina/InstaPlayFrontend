@@ -61,13 +61,15 @@ class Playlist extends React.Component{
         // console.log(this.props.playlist === this.props.match.params.id ? this.props.playlist : null)
         return(
             <div className="playlist-page-div">
-                <h3 className="playlist-page-type">Playlist</h3>
-                <img className="playlist-page-image" src={image}/>
-                <h1 className="playlist-page-title">{title}</h1>
-                <h4 className="playlist-page-description">{description}</h4>
-                <h4 className="playlist-page-username">Created By: {user.username}</h4>
-                {this.state.isClicked ? this.renderEditForm() : ''}
-                <button className="playlist-page-edit-button" onClick={this.toggleForm}>Edit Playlist</button>
+                <div className="playlist-page-second-div">
+                    <h3 className="playlist-page-type">Playlist</h3>
+                    <img className="playlist-page-image" src={image}/>
+                    <h1 className="playlist-page-title">{title}</h1>
+                    <h4 className="playlist-page-description">{description}</h4>
+                    <h4 className="playlist-page-username">Created By: {user.username}</h4>
+                    {this.state.isClicked ? this.renderEditForm() : ''}
+                    <button className="playlist-page-edit-button" onClick={this.toggleForm}>Edit Playlist</button>
+                </div>
                 <br></br>
                 {playlistSongs.map(playlistSong => <PlaylistSongs key={playlistSong.id} playlistSongs={playlistSong}/>)}
             </div>
