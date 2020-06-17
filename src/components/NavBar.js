@@ -20,7 +20,7 @@ class NavBar extends React.Component {
           {/* <div className="logo">♫</div> */}
           {/* <div className="logo"><img src={logo}/></div> */}
           <div className="main-bullet">
-            <Link to="/" className="logo"><img src={logo}/></Link>
+            <Link to="/" className="logo"><img className="nav-bar-logo"src={logo}/></Link>
             <Link to="/homepage" className="nav-element">Homepage</Link>
             <Link to="/profile" className="nav-element">Profile</Link>
             <Link to="/playlists" className="nav-element">Playlists</Link>

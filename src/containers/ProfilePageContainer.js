@@ -70,13 +70,15 @@ class ProfilePageContainer extends React.Component {
         const {name, bio, image} = this.props.currentUser
         console.log(this.props.currentUser)
         return(
-            <div>
-                <h1>{name}</h1>
-                <p>{bio}</p>
-                <img className="profile-image" src={image} alt={name}/>
-                <br></br>
-                {this.state.isClicked ? this.renderEditForm() : ''}
-                <button class="b1 b2 b3 b4" type="button" onClick={this.toggleForm}>Edit Profile</button>
+            <div className="main-div">
+                <div className="header">
+                    <img className="profile-image" src={image} alt={name}/>
+                    <h1 className="profile-name">{name}</h1>
+                    <p className="profile-bio">{bio}</p>
+                    <br></br>
+                    {this.state.isClicked ? this.renderEditForm() : ''}
+                    <button class="b1 b2 b3 b4" type="button" onClick={this.toggleForm}>Edit Profile</button>
+                </div>
                 {userSongs.map(userSong => <PostCards userSong={userSong} key={userSong.id} currentUser={currentUser}/>)}
             </div>
         )

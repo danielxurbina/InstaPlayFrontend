@@ -125,7 +125,7 @@ section > .container > * {
   margin: 0;
 }
 .download-btn:hover {
-  background-color: red;
+  background-color: rgb(172, 172, 172);
 } 
 
 .text-white {

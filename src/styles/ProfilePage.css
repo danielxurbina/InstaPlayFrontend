@@ -85,20 +85,53 @@
     cursor: pointer;
     display: block;
     font-weight: 600;
-    padding: 5px 9px;
+    padding: 1px 1px;
     text-align: center;
     text-transform: inherit;
     text-overflow: ellipsis;
+    -webkit-user-select: none;
     user-select: none;
+    margin-left: 34px;
+    margin-top: 15px;
+    font-size: 11px;
 }
 
 .b3{
-    width: 10%;
+    width: 5%;
+    height: 24px;
 }
 
 .b4{
     background-color: hsla(0, 0%, 0%, 0);
     border: 1px solid rgba(var(--ca6,219,219,219), 1);
     color: rgba(var(--f75,38,38,38),1)
+}
+
+.profile-image{
+    border: 1px solid hsl(0, 0%, 87%);
+    border-radius: 100%;
+    width: 150px;
+    height: auto;
+    margin-left: 504px;
+}
+
+.profile-name{
+    font-size: 30px;
+    margin-left: 41px;
+    margin-top: 8px;
+}
+
+.profile-bio{
+    margin-left: -82px;
+    margin-top: 61px;
+}
+
+.header{
+    margin-bottom: 28px;
+    display: flex;
+    position: relative;
+    margin-top: 27px;
+    border-bottom: solid 1px hsl(0, 0%, 93%);
+    padding-bottom: 46px;
 }
 
