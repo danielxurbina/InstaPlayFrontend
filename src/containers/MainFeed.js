@@ -7,7 +7,7 @@ function MainFeed(props){
         const [value, setValue] = useState(false);
         const {songs, currentUser, userPlaylists, text, comments, likes, users} = props
         return(
-            <div>
+            <div className="mainfeed-div">
                 <Search searchPosts={props.searchPosts}/>
                 <MainFeedForm 
                     isOn={value} 

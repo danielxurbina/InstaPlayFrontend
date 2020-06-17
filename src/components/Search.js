@@ -4,7 +4,8 @@ class Search extends React.Component {
     render(){
         return(
             <div>
-                <input 
+                <input
+                    className="search-input"
                     type="text" 
                     placeholder={"Search for a Post"} 
                     onChange={(event) => this.props.searchPosts(event)}

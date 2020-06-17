@@ -16,7 +16,7 @@ class PlaylistSongs extends React.Component {
 
     render(){
         return(
-            <audio ref="audio_tag" src={this.state.songs} controls/>
+            <audio className="playlist-audio" ref="audio_tag" src={this.state.songs} controls/>
         )
     }
 }

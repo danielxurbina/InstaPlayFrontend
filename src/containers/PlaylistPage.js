@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import PlaylistForm from '../components/PlaylistForm'
 import PlaylistContainer from './PlaylistContainer'
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container"
+import '../styles/playlist.css'
 
 function PlaylistPage(props) {
     const [value, setValue] = useState(false);
@@ -17,20 +16,18 @@ function PlaylistPage(props) {
                 createPlaylistHandler={props.createPlaylistHandler} 
                 currentUser={currentUser} 
             />
-            <Container maxWidth="md">
-                <Grid container spacing={5}>
+            <div className="container">
+                <div className="grid">
                     {userPlaylists.map(userPlaylist => 
-                        <Grid xs={15} sm={15} md={5}>
-                            <PlaylistContainer 
-                                userPlaylist={userPlaylist} 
-                                key={userPlaylist.id} 
-                                currentUser={currentUser} 
-                                routerProps={props.routerProps}
-                            />
-                        </Grid>
+                        <PlaylistContainer 
+                            userPlaylist={userPlaylist} 
+                            key={userPlaylist.id} 
+                            currentUser={currentUser} 
+                            routerProps={props.routerProps}
+                        />
                     )}
-                </Grid> 
-            </Container>
+                </div>
+            </div>
         </div>
     )
 }
