@@ -3,10 +3,14 @@
 }
 
 .button{
-    margin-left: 650px
+    margin-left: 650px;
 }
 
 .file{
     margin-left: 520px;
     min-width: fit-content;
+}
+
+.input.file{
+    color: black;
 }

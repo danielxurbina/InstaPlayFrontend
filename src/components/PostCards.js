@@ -12,7 +12,7 @@ class PostCards extends React.Component {
         return(
             <div>
                 <img src={post_image} alt={username}/>
-                <h3>{username} {description}</h3>
+                <h3 className="profile-page-post-title">{username} {description}</h3>
                 <audio ref="audio_tag" src={song} controls/>
             </div>
         )

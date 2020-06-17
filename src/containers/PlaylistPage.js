@@ -7,7 +7,7 @@ function PlaylistPage(props) {
     const [value, setValue] = useState(false);
     const {userPlaylists, currentUser} = props
     return(
-        <div>
+        <div className="p-div">
             <h1 className="container">Playlists</h1>
             <PlaylistForm 
                 isOn={value} 

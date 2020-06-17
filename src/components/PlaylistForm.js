@@ -18,7 +18,7 @@ function PlaylistForm(props) {
                 {props.currentUser ? <Input type="hidden" name="user_id" value={props.currentUser.id}/> : null}
               </FormGroup>
               <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                <Input type="file" name="image" />
+                <Input type="file" name="image" className="playlist-form-file-button" />
               </FormGroup>
               <Button className="button">Submit</Button>
             </Form>
