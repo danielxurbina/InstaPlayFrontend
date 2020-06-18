@@ -13,8 +13,18 @@
     overflow: hidden;
     outline:none;
   }
-  .likeButton:focus{ outline-color: transparent }
+  .likeButton:focus{ 
+        outline-color: rgb(29, 23, 23); 
+        outline: none;
+  
+  }
   .likeButton.unlike{
     font-size: 15.7px;
     margin-left: 1px;
+    outline: none;
+    border:none;
+  }
+  .likeButton:active{
+    outline: none;
+    border: none;
   }

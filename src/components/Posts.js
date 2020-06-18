@@ -30,10 +30,10 @@ class Posts extends React.Component {
         if(this.props.currentUser){
             const currentLike = filteredLikes.filter(like => like.user.id === this.props.currentUser.id)
             if(currentLike.length > 0){
-                return <h4 className="like-sec">{filteredLikes.length} likes<button className="likeButton" value={currentLike[0].id} onClick={(event) => this.props.deleteLike(event)}>❤</button></h4>
+                return <h4 className="like-sec">{filteredLikes.length} likes<button className="likeButton" value={currentLike[0].id} onClick={(event) => this.props.deleteLike(event)}>❤️</button></h4>
             }
             else {
-                return <h4 className="like-sec">{filteredLikes.length} likes<button className="likeButton unlike" value={id} onClick={(event) => this.props.likePost(event)}>♡</button> </h4>
+                return <h4 className="like-sec">{filteredLikes.length} likes<button className="likeButton unlike" value={id} onClick={(event) => this.props.likePost(event)}>🤍</button> </h4>
             }
         }
         else {

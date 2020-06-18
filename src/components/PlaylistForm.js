@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, FormGroup, Input } from 'reactstrap';
-import './Switch.css'
+import '../styles/Switch.css'
 
 function PlaylistForm(props) {
     console.log(props.isOn)

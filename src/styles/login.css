@@ -73,16 +73,17 @@
     padding: 7px 30px;
     margin-top: 30px;
     border: none;
-    color: black;
-    background-color: white;
-    box-shadow: 2px 2px 2px white;
+    color: white;
+    background-color: rgb(149, 35, 35);
+    box-shadow: 2px 2px 2px rgb(0, 0, 0);
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.2s ease-in;
+    border-radius: 30px;
   }
   
   #login-btn:hover {
-    background-color: rgb(143, 142, 142);
+    background-color: rgb(124, 30, 30);
     box-shadow: none;
     transform: translateX(1px) translateY(1px);
   }
@@ -96,11 +97,11 @@
   
   .link {
     text-decoration: none;
-    color: rgba(0, 17, 251, 0.712);
+    color: rgb(149, 35, 35);
   }
   
   .link:hover {
     text-decoration: underline;
-    color: rgba(0, 17, 251, 0.712);
+    color: rgb(149, 35, 35);
   }
   
