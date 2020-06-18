@@ -16,16 +16,7 @@ const headers = {
 
 class App extends React.Component {
 
-  state = {
-    currentUser: null, 
-    songs: [], 
-    playlists: [],
-    comments: [],
-    likes: [],
-    users: [],
-    sort: "",
-    text: ""
-  }
+  state = {currentUser: null, songs: [], playlists: [], comments: [], likes: [], users: [], sort: "", text: ""}
 
   componentDidMount(){
     Promise.all([fetch(songsURL), fetch(playlistURL), fetch(commentsURL), fetch(likesURL), fetch(usersURL)])
