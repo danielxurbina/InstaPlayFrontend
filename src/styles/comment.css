@@ -30,16 +30,20 @@ color: white;
   font-size: 14px;
   padding: 10px;
   border: none;
-  border-top: 1px solid #efefef;
-  background-color: rgb(56, 45, 45);
-  color: white;
+  border-top: 1px solid hsl(0, 0%, 94%);
+  background-color: hsl(0, 11%, 20%);
+  color: hsl(0, 0%, 100%);
   outline: none;
 }
 
 .comment-button{
-  margin: 10px 0;
+  margin: 0px 0;
   width: 100%;
   border: none;
   background-color: rgb(149, 35, 35);
   color: white;
+  padding-bottom: 5px;
+  margin-bottom: -35px;
 }
+
+/* hello testing github push*/

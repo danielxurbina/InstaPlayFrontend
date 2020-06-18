@@ -152,7 +152,16 @@ class App extends React.Component {
           <Route exact path="/profile" 
             render={() => { 
               return currentUser ? 
-              (<ProfilePage currentUser={currentUser} userSongs={userSongs} updateUser={this.updateUser}/>) : (<Login setCurrentUser={this.setCurrentUser}/>)
+              (<ProfilePage 
+                currentUser={currentUser} 
+                userSongs={userSongs} 
+                updateUser={this.updateUser}
+                userPlaylists={userPlaylists}
+                comments={comments}
+                text={text}
+                commentSubmitHandler={this.commentSubmitHandler}
+                inputHandler={this.inputHandler}
+              />) : (<Login setCurrentUser={this.setCurrentUser}/>)
             }}
           />
         </Switch>

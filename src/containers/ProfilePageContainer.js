@@ -66,7 +66,7 @@ class ProfilePageContainer extends React.Component {
     }
 
     render(){
-        const {userSongs, currentUser} = this.props
+        const {userSongs, currentUser, userPlaylists, comments, text} = this.props
         const {name, bio, image} = this.props.currentUser
         console.log(this.props.currentUser)
         return(
@@ -79,7 +79,19 @@ class ProfilePageContainer extends React.Component {
                     {this.state.isClicked ? this.renderEditForm() : ''}
                     <button class="b1 b2 b3 b4" type="button" onClick={this.toggleForm}>Edit Profile</button>
                 </div>
-                {userSongs.map(userSong => <PostCards userSong={userSong} key={userSong.id} currentUser={currentUser}/>)}
+                {userSongs.map(userSong => 
+                    <PostCards 
+                        comments={comments} 
+                        userPlaylists={userPlaylists} 
+                        userImage={image} 
+                        userSong={userSong} 
+                        key={userSong.id} 
+                        currentUser={currentUser}
+                        text={text}
+                        commentSubmitHandler={this.props.commentSubmitHandler}
+                        inputHandler={this.props.inputHandler}
+                    />
+                )}
             </div>
         )
     }
